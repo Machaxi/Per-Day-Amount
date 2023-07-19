@@ -13,6 +13,7 @@
     "axios": "^1.4.0",
     "crypto": "^1.0.1",
     "express": "^4.18.2",
+    "google-spreadsheet": "^4.0.2",
     "googleapis": "^120.0.0",
     "http": "^0.0.1-security",
     "paytmchecksum": "^1.5.0"

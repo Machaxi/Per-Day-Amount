@@ -3,6 +3,35 @@ const app = express();
 const PaytmChecksum = require("./PaytmChecksum");
 const https = require('https');
 const axios = require('axios');
+const { google } = require('googleapis');
+const key = require('./key.json');
+
+const currentDate = new Date();
+const cDay = currentDate.getDate().toString().padStart(2, '0');
+const cMonth = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+const cYear = currentDate.getFullYear();
+
+
+
+const client = new google.auth.JWT(
+  key.client_email,
+  null,
+  key.private_key,
+  ['https://www.googleapis.com/auth/spreadsheets']
+);
+
+client.authorize(function (err) {
+  if (err) {
+    console.error('2 Authentication error:', err);
+    return;
+  }
+  console.log('Authentication successful!');
+});
+const arr = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF']
+const sheets = google.sheets({ version: 'v4', auth: client });
+const spreadsheetId = '1eE_151S-P-moJI5WBYiePvZHVIDYlhvS_-pSFVZiWSM'; // Replace with your Google Sheet ID
+const range = 'Mukti_test!'+arr[(cDay - 1)]+'2:'+arr[(cDay - 1)]+'8'; // Specify the range where you want to write data
+const values=[];
 
 app.use(express.json());
 
@@ -46,11 +75,6 @@ const merchants = [{
     // Add more merchants here if needed
 ];
 
-const currentDate = new Date();
-const cDay = currentDate.getDate().toString().padStart(2, '0');
-const cMonth = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-const cYear = currentDate.getFullYear();
-
 const intervals = [{
         fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T03:00:00+05:30",
         toDate: cYear + "-" + cMonth + "-" + (cDay-1).toString().padStart(2, '0') + "T05:00:00+05:30"
@@ -91,6 +115,7 @@ const intervals = [{
     }
     // Add more intervals here
 ];
+
 
 app.post("/orders", async (req, res) => {
     try {
@@ -160,7 +185,6 @@ app.post("/orders", async (req, res) => {
                         totalAmount += parseFloat(order.amount);
                     }
                 }
-
                 merchantTotalAmounts.push({
                     merchantNAME: merchant.name,
                     totalAmount: totalAmount
@@ -172,7 +196,7 @@ app.post("/orders", async (req, res) => {
             merchantTotalAmounts
         });
     } catch (error) {
-        console.error('Error:', error);
+        console.error('3 Error:', error);
         res.status(500).json({
             error: 'An error occurred while processing the request'
         });
@@ -185,15 +209,46 @@ app.listen(port, () => {
 
 axios.post('http://localhost:3000/orders')
     .then(response => {
+        let value = []
         console.log('Machaxi Academy wise per day total amounts of successfully paid orders:');
-        let i=1;
+        let i = 1;
         for (const merchant of response.data.merchantTotalAmounts) {
-            if(i%12==0){
-            console.log(`Machaxi Academy Name: ${merchant.merchantNAME}  ->  Total Amount: ${merchant.totalAmount}`);
+            if (i % 12 == 0) {
+                console.log(`Machaxi Academy Name: ${merchant.merchantNAME}  ->  Total Amount: ${merchant.totalAmount}`);
+                value.push(merchant)
             }
             i++;
         }
+        let resource = {
+            values: value,
+        };
+        // console.log(resource)
+        let val = resource.values;
+        let finalVal = []
+        // console.log("Val variable : ", val);
+        val.forEach(value => {
+            let semiFinalVal = [];
+            semiFinalVal.push(value.totalAmount);
+            finalVal.push(semiFinalVal)
+        });
+        // console.log(finalVal)
+        resource['values'] = finalVal
+        // console.log(resource)
+        sheets.spreadsheets.values.update({
+                spreadsheetId: spreadsheetId,
+                range: range,
+                valueInputOption: 'RAW',
+                resource: resource,
+            },
+            function (err, result) {
+                if (err) {
+                    console.error('4 Error updating sheet:', err);
+                    return;
+                }
+                console.log('Data successfully pushed to the sheet!');
+            }
+        );
     })
     .catch(error => {
-        console.error('Error:', error.message);
+        console.error('Error1:', error.message);
     });

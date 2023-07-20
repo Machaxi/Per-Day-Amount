@@ -65,7 +65,7 @@ let newSheetName = m[currentDate.getMonth()];
 const sheets = google.sheets({ version: 'v4', auth: client });
 const spreadsheetId = '1eE_151S-P-moJI5WBYiePvZHVIDYlhvS_-pSFVZiWSM'; // Replace with your Google Sheet ID
 createNewSheet(spreadsheetId, newSheetName);
-const range = m[currentDate.getMonth()] + '!' + arr[(cDay - 1)] + '2:' + arr[(cDay - 1)] + '8'; // Specify the range where you want to write data
+const range = m[currentDate.getMonth()] + '!' + arr[(currentDate.getDate()-1)] + '2:' + arr[(currentDate.getDate()-1)] + '8'; // Specify the range where you want to write data
 const values=[];
 
 app.use(express.json());

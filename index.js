@@ -40,6 +40,10 @@ async function createNewSheet(spreadsheetId, sheetName) {
             addSheet: {
               properties: {
                 title: sheetName,
+                 gridProperties: {
+                    rowCount: 1000,
+                    columnCount: 32,
+                  },
               },
             },
           },

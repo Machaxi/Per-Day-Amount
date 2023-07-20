@@ -27,10 +27,41 @@ client.authorize(function (err) {
   }
   console.log('Authentication successful!');
 });
+
+async function createNewSheet(spreadsheetId, sheetName) {
+  const sheets = google.sheets({ version: 'v4', auth: client });
+
+  try {
+    await sheets.spreadsheets.batchUpdate({
+      spreadsheetId: spreadsheetId,
+      resource: {
+        requests: [
+          {
+            addSheet: {
+              properties: {
+                title: sheetName,
+              },
+            },
+          },
+        ],
+      },
+    });
+
+    console.log(`Sheet "${sheetName}" created successfully!`);
+  } catch (err) {
+    // console.error('Error creating sheet:');
+  }
+}
+
+
 const arr = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF']
+const m = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dev']
+
+let newSheetName = m[currentDate.getMonth()];
 const sheets = google.sheets({ version: 'v4', auth: client });
 const spreadsheetId = '1eE_151S-P-moJI5WBYiePvZHVIDYlhvS_-pSFVZiWSM'; // Replace with your Google Sheet ID
-const range = 'Mukti_test!'+arr[(cDay - 1)]+'2:'+arr[(cDay - 1)]+'8'; // Specify the range where you want to write data
+createNewSheet(spreadsheetId, newSheetName);
+const range = m[currentDate.getMonth()] + '!' + arr[(cDay - 1)] + '2:' + arr[(cDay - 1)] + '8'; // Specify the range where you want to write data
 const values=[];
 
 app.use(express.json());
@@ -222,18 +253,14 @@ axios.post('http://localhost:3000/orders')
         let resource = {
             values: value,
         };
-        // console.log(resource)
         let val = resource.values;
         let finalVal = []
-        // console.log("Val variable : ", val);
         val.forEach(value => {
             let semiFinalVal = [];
             semiFinalVal.push(value.totalAmount);
             finalVal.push(semiFinalVal)
         });
-        // console.log(finalVal)
         resource['values'] = finalVal
-        // console.log(resource)
         sheets.spreadsheets.values.update({
                 spreadsheetId: spreadsheetId,
                 range: range,

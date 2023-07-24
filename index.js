@@ -13,6 +13,7 @@ const cYear = currentDate.getFullYear();
 
 
 
+
 const client = new google.auth.JWT(
   key.client_email,
   null,
@@ -112,45 +113,153 @@ const merchants = [{
 
 const intervals = [{
         fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T03:00:00+05:30",
-        toDate: cYear + "-" + cMonth + "-" + (cDay-1).toString().padStart(2, '0') + "T05:00:00+05:30"
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T03:30:00+05:30"
+    },
+    {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T03:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T04:00:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T04:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T04:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T04:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T05:00:00+05:30"
     },
     {
         fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T05:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T05:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T05:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T06:00:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T06:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T06:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T06:30:00+05:30",
         toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T07:00:00+05:30"
     }, {
         fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T07:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T07:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T07:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T08:00:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T08:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T08:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T08:30:00+05:30",
         toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T09:00:00+05:30"
     }, {
         fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T09:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T09:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T09:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T10:00:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T10:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T10:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T10:30:00+05:30",
         toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T11:00:00+05:30"
     }, {
         fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T11:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T11:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T11:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T12:00:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T12:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T12:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T12:30:00+05:30",
         toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T13:00:00+05:30"
     }, {
         fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T13:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T13:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T13:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T14:00:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T14:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T14:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T14:30:00+05:30",
         toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T15:00:00+05:30"
-    },{
+    }, {
         fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T15:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T15:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T15:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T16:00:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T16:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T16:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T16:30:00+05:30",
         toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T17:00:00+05:30"
     }, {
         fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T17:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T17:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T17:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T18:00:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T18:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T18:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T18:30:00+05:30",
         toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T19:00:00+05:30"
     }, {
         fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T19:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T19:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T19:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T20:00:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T20:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T20:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T20:30:00+05:30",
         toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T21:00:00+05:30"
     }, {
         fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T21:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T21:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T21:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T22:00:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T22:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T22:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T22:30:00+05:30",
         toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T23:00:00+05:30"
     }, {
         fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T23:00:00+05:30",
-        toDate: cYear + "-" + cMonth + "-" + cDay.toString().padStart(2, '0') + "T01:00:00+05:30"
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T23:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T23:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay - 1).toString().padStart(2, '0') + "T24:00:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay).toString().padStart(2, '0') + "T00:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay).toString().padStart(2, '0') + "T00:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay).toString().padStart(2, '0') + "T00:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay).toString().padStart(2, '0') + "T01:00:00+05:30"
     }, {
         fromDate: cYear + "-" + cMonth + "-" + (cDay).toString().padStart(2, '0') + "T01:00:00+05:30",
-        toDate: cYear + "-" + cMonth + "-" + cDay.toString().padStart(2, '0') + "T03:00:00+05:30"
+        toDate: cYear + "-" + cMonth + "-" + (cDay).toString().padStart(2, '0') + "T01:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay).toString().padStart(2, '0') + "T01:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay).toString().padStart(2, '0') + "T02:00:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay).toString().padStart(2, '0') + "T02:00:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay).toString().padStart(2, '0') + "T02:30:00+05:30"
+    }, {
+        fromDate: cYear + "-" + cMonth + "-" + (cDay).toString().padStart(2, '0') + "T02:30:00+05:30",
+        toDate: cYear + "-" + cMonth + "-" + (cDay).toString().padStart(2, '0') + "T03:00:00+05:30"
     }
     // Add more intervals here
 ];
-
 
 app.post("/orders", async (req, res) => {
     try {
@@ -248,7 +357,7 @@ axios.post('http://localhost:3000/orders')
         console.log('Machaxi Academy wise per day total amounts of successfully paid orders:');
         let i = 1;
         for (const merchant of response.data.merchantTotalAmounts) {
-            if (i % 12 == 0) {
+            if (i % 48 == 0) {
                 console.log(`Machaxi Academy Name: ${merchant.merchantNAME}  ->  Total Amount: ${merchant.totalAmount}`);
                 value.push(merchant)
             }
